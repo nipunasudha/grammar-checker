@@ -1,0 +1,49 @@
+#resultsDiv {
+  border: 1px solid #aaa;
+  .g-error {
+    padding: 4px 4px;
+    margin: 0 4px;
+    cursor: pointer;
+    &.g-error-red {
+      background: darkred;
+      color: #fff;
+      transition: background-color 0.2s;
+      &:hover {
+        background: red;
+      }
+    }
+  }
+}
+
+#g-popup {
+  position: absolute;
+  width: 200px;
+  border-radius: 6px;
+  border: 1px solid #999;
+  background: white;
+  .g-popup-title {
+    padding: 10px 20px;
+    margin: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    background: #eee;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  .g-popup-body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    #correctionsUl {
+      list-style: none;
+      padding-left: 0;
+      li {
+        padding: 4px 10px;
+        cursor: pointer;
+        &:hover {
+          background: lightblue;
+        }
+      }
+    }
+  }
+}

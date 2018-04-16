@@ -29,5 +29,17 @@ def print_msg():
     return jsonify(msg_response)
 
 
+@app.route('/checkgrammar', methods=['POST'])
+def check_grammar():
+    textToCheck = request.form['textToCheck']
+    grammarCheckResult = gram.capitalize(textToCheck)
+    checkgrammar_response = {
+        'message': 'Message printed on flask console!',
+        'results': grammarCheckResult,
+        'datetime': utils.get_datetime()
+    }
+    return jsonify(checkgrammar_response)
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True, threaded=True)

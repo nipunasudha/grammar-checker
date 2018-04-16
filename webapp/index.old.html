@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grammar Checker</title>
+    <link rel="stylesheet" href="static/node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container pt-2">
+    <h2>Grammar Checker</h2>
+    <hr>
+    <p>Hello user! Click buttons to see it in action.</p>
+    <div id="getMsgBtn" class="btn btn-primary">Load a message from flask (Route: /getmsg)</div>
+    <br>
+    <div id="printMsgBtn" class="btn btn-success mt-2">Send a message to flask (Route: /printmsg)</div>
+
+    <div class="card text-white bg-dark mt-3" style="width: 400px">
+        <div class="card-body">
+            <h5 class="card-title">Results Section</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Results will be shown here</h6>
+            <p class="card-text" id="result"></p>
+        </div>
+    </div>
+</div>
+
+
+<script src="static/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="static/js/app-utils.js"></script>
+<script src="static/js/app-main.js"></script>
+</body>
+</html>
