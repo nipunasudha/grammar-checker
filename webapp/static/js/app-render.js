@@ -73,6 +73,10 @@ function showSuggestions(clickedSpan) {
     popup.show();
 }
 
-function makeCorrection() {
-
+function makeCorrection(liThis) {
+    var clickedSpan = g_clickedSpan;
+    var selectedVal = $(liThis).data('value');
+    log(selectedVal);
+    $(clickedSpan).text(selectedVal);
+    hidePopup();
 }

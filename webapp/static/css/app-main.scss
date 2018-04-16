@@ -5,11 +5,19 @@
     margin: 0 4px;
     cursor: pointer;
     &.g-error-red {
-      background: darkred;
       color: #fff;
+      background: darkred;
       transition: background-color 0.2s;
       &:hover {
-        background: red;
+        background: orangered;
+      }
+    }
+    &.g-error-blue {
+      color: #fff;
+      background: navy;
+      transition: background-color 0.2s;
+      &:hover {
+        background: mediumblue;
       }
     }
   }

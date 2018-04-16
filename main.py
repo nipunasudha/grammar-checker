@@ -8,6 +8,41 @@ import grammar_engine as gram
 app = Flask(__name__)
 CORS(app)
 
+dummyData = [
+    {
+        "segmentType": 'ok',
+        "segmentContent": 'This is a sentence section without any errors, but '
+    },
+    {
+        "segmentType": 'error',
+        "segmentContent": 'coputar',
+        "segmentClass": "g-error g-error-red",
+        "segmentSuggestions": [
+            'computer',
+            'compare',
+            'copier'
+        ]
+    },
+    {
+        "segmentType": 'ok',
+        "segmentContent": 'is an incorrect word. But also '
+    },
+    {
+        "segmentType": 'error',
+        "segmentContent": 'nipuna',
+        "segmentClass": "g-error g-error-blue",
+        "segmentSuggestions": [
+            'Nipuna',
+            'nipper',
+            'nipo'
+        ]
+    },
+    {
+        "segmentType": 'ok',
+        "segmentContent": 'is not capitalized correctly!'
+    }
+]
+
 
 @app.route('/getmsg', methods=['GET'])
 def get_msg():
@@ -35,7 +70,9 @@ def check_grammar():
     grammarCheckResult = gram.capitalize(textToCheck)
     checkgrammar_response = {
         'message': 'Message printed on flask console!',
-        'results': grammarCheckResult,
+        # 'results': grammarCheckResult,
+        # injecting dummy data
+        'results': dummyData,
         'datetime': utils.get_datetime()
     }
     return jsonify(checkgrammar_response)

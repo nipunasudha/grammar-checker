@@ -1,11 +1,12 @@
 var grammarApp = {
     consts: {
         //A test url to load a message from the backend
-        msgUrl: 'http://localhost:5000/getmsg',
+        // msgUrl: 'http://localhost:5000/getmsg',
         //A test url to send a message to flask for printing
-        printerUrl: 'http://localhost:5000/printmsg',
+        // printerUrl: 'http://localhost:5000/printmsg',
+
         //Actual grammar check url
-        checkGrammar: 'http://localhost:5000/checkGrammar'
+        checkGrammar: 'http://localhost:5000/checkgrammar'
     }
 };
 
@@ -27,7 +28,21 @@ var recievedText = [
     },
     {
         segmentType: 'ok',
-        segmentContent: 'is an incorrect word.'
+        segmentContent: 'is an incorrect word. But also '
+    },
+    {
+        segmentType: 'error',
+        segmentContent: 'nipuna',
+        segmentClass: "g-error g-error-blue",
+        segmentSuggestions: [
+            'Nipuna',
+            'nipper',
+            'nipo'
+        ]
+    },
+    {
+        segmentType: 'ok',
+        segmentContent: 'is not capitalized correctly!'
     }
 ];
 
@@ -35,7 +50,6 @@ var recievedText = [
 $(function () {
     grammarApp.init();
     grammarApp.bindUi();
-    renderText(recievedText);
 });
 
 
@@ -44,14 +58,15 @@ grammarApp.init = function () {
 };
 
 grammarApp.bindUi = function () {
-    $('#getMsgBtn').click(function () {
-        log('getMsgBtn click');
-        grammarAppUtils.sendGet({}, grammarApp.consts.msgUrl, updateResults);
-    });
-    $('#printMsgBtn').click(function () {
-        log('printMsgBtn click');
-        grammarAppUtils.sendPost({'textToPrint': 'Hello from the web app!'}, grammarApp.consts.printerUrl, updateResults);
-    });
+    //OLD demo functions used for flask data send & get
+    /*$('#getMsgBtn').click(function () {
+          log('getMsgBtn click');
+          grammarAppUtils.sendGet({}, grammarApp.consts.msgUrl, updateResults);
+      });
+      $('#printMsgBtn').click(function () {
+          log('printMsgBtn click');
+          grammarAppUtils.sendPost({'textToPrint': 'Hello from the web app!'}, grammarApp.consts.printerUrl, updateResults);
+      });*/
     $('body').click(function () {
         hidePopup();
     });
@@ -63,15 +78,19 @@ grammarApp.bindUi = function () {
         e.stopPropagation();
     });
     $('#correctionsUl').on('click', 'li', function (e) {
-        clickedSpan = g_clickedSpan;
-        selectedVal = $(this).data('value');
-        $(clickedSpan).text(selectedVal);
-        hidePopup();
-        console.log(selectedVal)
+        makeCorrection(this);
+    });
+    $('#btnCheck').click(function () {
+        var inputText = $('#textareaInput').val();
+        log(inputText);
+        grammarAppUtils.sendPost({'textToCheck': inputText}, grammarApp.consts.checkGrammar, renderResult);
     })
+
 };
 
-//--------------- for demo ------------------
-function updateResults(data) {
-    $('#result').text(JSON.stringify(data))
+//===============================================================
+function renderResult(data) {
+    log("======= Result from flask =======");
+    log(data);
+    renderText(data['results'])
 }

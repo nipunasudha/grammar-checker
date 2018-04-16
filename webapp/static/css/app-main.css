@@ -5,11 +5,17 @@
     margin: 0 4px;
     cursor: pointer; }
     #resultsDiv .g-error.g-error-red {
-      background: darkred;
       color: #fff;
+      background: darkred;
       transition: background-color 0.2s; }
       #resultsDiv .g-error.g-error-red:hover {
-        background: red; }
+        background: orangered; }
+    #resultsDiv .g-error.g-error-blue {
+      color: #fff;
+      background: navy;
+      transition: background-color 0.2s; }
+      #resultsDiv .g-error.g-error-blue:hover {
+        background: mediumblue; }
 
 #g-popup {
   position: absolute;
