@@ -9,9 +9,33 @@ var grammarApp = {
     }
 };
 
+//This is a sample dataset recieved from the flask backend.
+var recievedText = [
+    {
+        segmentType: 'ok',
+        segmentContent: 'This is a sentence section without any errors, but '
+    },
+    {
+        segmentType: 'error',
+        segmentContent: 'coputar',
+        segmentClass: "g-error g-error-red",
+        segmentSuggestions: [
+            'computer',
+            'compare',
+            'copier'
+        ]
+    },
+    {
+        segmentType: 'ok',
+        segmentContent: 'is an incorrect word.'
+    }
+];
+
+
 $(function () {
     grammarApp.init();
     grammarApp.bindUi();
+    renderText(recievedText);
 });
 
 
@@ -31,7 +55,7 @@ grammarApp.bindUi = function () {
     $('body').click(function () {
         hidePopup();
     });
-    $('.g-error').click(function (e) {
+    $('#resultsDiv').on('click', '.g-error', function (e) {
         e.stopPropagation();
         showSuggestions(this);
     });

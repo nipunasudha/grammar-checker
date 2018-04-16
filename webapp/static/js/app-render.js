@@ -37,6 +37,29 @@ function renderPopup() {
     positionPopup(clickedSpan)
 }
 
+function wrapErrorInSpan(segment) {
+    var s = segment;
+    // log("<span class='" + s.segmentClass + "' data-corrections='" + JSON.stringify(s.segmentSuggestions).replace(/"/g, '\'') + "'>" + s.segmentContent + "</span>")
+    log("<span class='" + s.segmentClass + "'>" + s.segmentContent + "</span>");
+    return $("<span class='" + s.segmentClass + "'>" + s.segmentContent + "</span>")
+}
+
+function renderText(textList) {
+    $.each(textList, function (index, segment) {
+        log(segment);
+        var segmentType = segment['segmentType'];
+        var segmentContent = segment['segmentContent'];
+        if (segmentType === 'ok') {
+            $('#resultsDiv').append(segmentContent)
+        } else {
+            var wrapped = wrapErrorInSpan(segment);
+            wrapped.data('corrections', JSON.stringify(segment.segmentSuggestions));
+            $('#resultsDiv').append(wrapped)
+        }
+    });
+
+}
+
 function hidePopup() {
     var popup = $('#g-popup');
     popup.hide();
