@@ -10,43 +10,6 @@ var grammarApp = {
     }
 };
 
-//This is a sample dataset recieved from the flask backend.
-var recievedText = [
-    {
-        segmentType: 'ok',
-        segmentContent: 'This is a sentence section without any errors, but '
-    },
-    {
-        segmentType: 'error',
-        segmentContent: 'coputar',
-        segmentClass: "g-error g-error-red",
-        segmentSuggestions: [
-            'computer',
-            'compare',
-            'copier'
-        ]
-    },
-    {
-        segmentType: 'ok',
-        segmentContent: 'is an incorrect word. But also '
-    },
-    {
-        segmentType: 'error',
-        segmentContent: 'nipuna',
-        segmentClass: "g-error g-error-blue",
-        segmentSuggestions: [
-            'Nipuna',
-            'nipper',
-            'nipo'
-        ]
-    },
-    {
-        segmentType: 'ok',
-        segmentContent: 'is not capitalized correctly!'
-    }
-];
-
-
 $(function () {
     grammarApp.init();
     grammarApp.bindUi();

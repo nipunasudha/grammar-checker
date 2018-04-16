@@ -25,7 +25,7 @@ dummyData = [
     },
     {
         "segmentType": 'ok',
-        "segmentContent": 'is an incorrect word. But also '
+        "segmentContent": ' is an incorrect word. But also '
     },
     {
         "segmentType": 'error',
@@ -39,7 +39,7 @@ dummyData = [
     },
     {
         "segmentType": 'ok',
-        "segmentContent": 'is not capitalized correctly!'
+        "segmentContent": ' is not capitalized correctly!'
     }
 ]
 
